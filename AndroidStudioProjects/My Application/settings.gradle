@@ -16,3 +16,4 @@ rootProject.name = "My Application"
 include ':app'
 include ':ch6_view'
 include ':ch7_constraintlayout'
+include ':ch7_layout'
