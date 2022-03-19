@@ -12,6 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "MyApplication7"
+rootProject.name = "MyApplication9"
 include ':app'
-include ':ch7_layout'

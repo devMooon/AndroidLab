@@ -12,6 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "MyApplication7"
+rootProject.name = "My Application8"
 include ':app'
-include ':ch7_layout'
+include ':ch8_event'
