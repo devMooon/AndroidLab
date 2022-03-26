@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "My Application10"
 include ':app'
+include ':app2'
+include ':ch10_notification'
