@@ -3,6 +3,7 @@ package com.example.ch8_event
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.Log
 import android.view.KeyEvent
 import android.widget.Toast
 import com.example.ch8_event.databinding.ActivityMainBinding
@@ -17,6 +18,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnStart.setOnClickListener{
+            Log.d("seoyeon", "elapsedRealtime: ${SystemClock.elapsedRealtime()}")
+            Log.d("seoyeon", "base: ${binding.chronometer.base}")
+            Log.d("seoyeon", "pauseTime: ${pauseTime}")
             binding.chronometer.base = SystemClock.elapsedRealtime() + pauseTime
             binding.chronometer.start()
             binding.btnStart.isEnabled=false
@@ -24,6 +28,10 @@ class MainActivity : AppCompatActivity() {
             binding.btnReset.isEnabled=true
         }
         binding.btnStop.setOnClickListener{
+            Log.d("seoyeon", "elapsedRealtime: ${SystemClock.elapsedRealtime()}")
+            Log.d("seoyeon", "base: ${binding.chronometer.base}")
+            Log.d("seoyeon", "pauseTime: ${pauseTime}")
+
             pauseTime = binding.chronometer.base - SystemClock.elapsedRealtime()
             binding.chronometer.stop()
             binding.btnStart.isEnabled=true
