@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.button2.setOnClickListener {
             DatePickerDialog(this,
-                object:DatePickerDialog.OnDateSetListener {
+                object: DatePickerDialog.OnDateSetListener {
                     override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
                         //TODO("Not yet implemented")
                         Log.d("mobileApp", "${p1}년, ${p2+1}월, ${p3}일")
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                 },
                 13, 0, true).show() // true 24, false 12
         }
-        val eventHandler = object:DialogInterface.OnClickListener{
+        val eventHandler = object: DialogInterface.OnClickListener{
             override fun onClick(p0: DialogInterface?, p1: Int) {
                 //TODO("Not yet implemented")
                 if(p1==DialogInterface.BUTTON_POSITIVE){
