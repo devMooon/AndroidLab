@@ -3,6 +3,8 @@ package com.example.ch10_notification
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.media.AudioAttributes
@@ -11,6 +13,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.app.NotificationCompat
+import androidx.core.app.RemoteInput
 import com.example.ch10_notification.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -69,6 +72,35 @@ class MainActivity : AppCompatActivity() {
             //builder 스타일 설정
             builder.setStyle(builderStyle)
 
+            val replyIntent = Intent(this, ReplyReceiver::class.java)//호출할 파일
+            //인텐트를 브로드케스트로 가지고 올 수 있도록 등록 해야함
+            //터치 이벤트
+            val replyPendingIntent = PendingIntent.getBroadcast(this, 30, replyIntent,PendingIntent.FLAG_MUTABLE) //FLAG_IMMUTABLE(변경 없음) //FLAG_MUTABLE(변경 있음)
+            //빌더에 등록
+            //builder.setContentIntent(replyPendingIntent)
+
+            builder.addAction(
+                NotificationCompat.Action.Builder(
+                    //인자 3개. 아이콘, 제목, 인텐트
+                    android.R.drawable.stat_notify_more,
+                    "Action",
+                    replyPendingIntent
+                ).build()
+            )
+
+            //원격 입력
+            val remoteInput = RemoteInput.Builder("key_text_replay").run{
+                setLabel("답장")
+                build()
+            }
+
+            builder.addAction(
+                NotificationCompat.Action.Builder(
+                    R.drawable.send,
+                    "답장",
+                    replyPendingIntent
+                ).addRemoteInput(remoteInput).build()
+            )
             manager.notify(11, builder.build()) // 첫번째 인자: notification 순서 번로(임의의 값)
 
         }

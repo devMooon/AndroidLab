@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu1"
+        android:title="메뉴1" />
+    <item
+        android:id="@+id/menu2"
+        android:title="메뉴2"
+        android:icon="@android:drawable/ic_menu_add"/>
+
+
+    <item
+        android:id="@+id/menu_search"
+        android:title="검색"
+        android:icon="@android:drawable/ic_menu_search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always" />
+    --아이템 클릭 시 SearchView 보여줌
+    --naver 점 세개 안에 보관한다.
+    --always 액션바에 숨기지 않겠다.
+    --ifroom 액션바에 자리가 있으면 보여주겠다.
+
+</menu>
