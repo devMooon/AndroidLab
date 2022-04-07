@@ -6,7 +6,7 @@ import android.os.SystemClock
 import android.util.Log
 import android.view.KeyEvent
 import android.widget.Toast
-import com.example.ch8_event.databinding.ActivityMainBinding
+import com.example.myapplication8_event.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     //chronometer에 얼마만큼 카운트가 됐는가
@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         if(keyCode == KeyEvent.KEYCODE_BACK){
             //두 번 연속 눌렸을 때 == 속도 차이가 얼마 안 날 때
             if(System.currentTimeMillis() - initTime > 3000) {// 현재 시간 - 저장된 시간
+                //Toast
                 Toast.makeText(this, "종료하려면 한번 더 누르세요.", Toast.LENGTH_LONG).show()
                 initTime = System.currentTimeMillis()
                 return true
