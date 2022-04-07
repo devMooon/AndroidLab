@@ -1,0 +1,5 @@
+<뷰 페이저2>
+
+1. [그래들] 뷰페이저2 선언
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+2. 레이아웃 XML에 뷰 페이저 화면 주가
