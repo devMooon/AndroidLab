@@ -9,8 +9,11 @@ import android.widget.Toast
 import com.example.myapplication8_event.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    //chronometer에 얼마만큼 카운트가 됐는가
+    //chronometer 얼마만큼 카운트가 됐는가
+    //멈춘 시각을 저장하는 속성
     var pauseTime = 0L
+
+    //뒤로가기 버튼을 누른 시각을 저장하는 속성
     var initTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +30,8 @@ class MainActivity : AppCompatActivity() {
             Log.d("seoyeon", "base: ${binding.chronometer.base}")
             Log.d("seoyeon", "pauseTime: ${pauseTime}")
             binding.chronometer.base = SystemClock.elapsedRealtime() + pauseTime
+
+            //버튼 표시 여부 조정
             binding.chronometer.start()
             binding.btnStart.isEnabled=false
             binding.btnStop.isEnabled=true
