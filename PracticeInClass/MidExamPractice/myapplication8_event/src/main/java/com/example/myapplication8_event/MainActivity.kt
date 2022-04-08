@@ -1,4 +1,4 @@
-package com.example.ch8_event
+package com.example.myapplication8_event
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
