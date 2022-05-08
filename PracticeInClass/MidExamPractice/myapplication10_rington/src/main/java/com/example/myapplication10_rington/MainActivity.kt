@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         //안드로이드 시스템은 알림(NOTIFICATION), 알람(ALARM), 벨소리(RINGTONE)등의 소리를 제공
         //이 소리는 RingtonManager로 얻을 수 있음!!!
 
-        //소리 재생 RingtomMager
+        //소리 재생 RingtomManager
         binding.button1.setOnClickListener {
             //1. 소리의 식별값 얻기
             val notification : Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
@@ -39,16 +39,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         //진동 알림
-        //1. manifests에서 <user-permissin>으로 퍼미션 얻기
+        //1.오류 주의: manifests 파일에 <user-permissin>으로 vibrator permission 등록 해야 함
         //      <uses-permission android:name="android.permission.VIBRATE">
         binding.button3.setOnClickListener {
-            //오류 주의: manifests 파일에 vibrator permission 등록 해야함
             //버전 호환성 고려해야함
 
-            // Vibrator 객체 획득
+///////////// Vibrator 객체 획득///////////////////////////////////////////////////
             val vibrator =
-                //31버전 이상의 API인 경우
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){ //31버전 이상의 API인 경우
                     val vibratorManager = this.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
                     vibratorManager.defaultVibrator
                 }
@@ -56,11 +54,15 @@ class MainActivity : AppCompatActivity() {
                 else {
                     getSystemService(VIBRATOR_SERVICE) as Vibrator
                 }
-            // Vibrator 를 이용한 진동 처리
+
+///////////// Vibrator 를 이용한 진동 처리///////////////////////////////////////////////////
+            //Logcat에 vibrator 검색 시 잘 되는지 나옴
+
             //26버전 이상의 API인 경우
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
                 vibrator.vibrate(
                     VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
+
             }
             //26버전 미만의 API인 경우
             else {

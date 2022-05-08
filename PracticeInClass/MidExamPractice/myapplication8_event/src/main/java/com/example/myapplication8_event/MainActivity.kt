@@ -25,10 +25,7 @@ class MainActivity : AppCompatActivity() {
         //star button click event
         binding.btnStart.setOnClickListener{
             //elapsedRealtime() 시스템이 부팅된 후의 시간 - 시간의 경과 파악
-            Log.d("seoyeon", "elapsedRealtime: ${SystemClock.elapsedRealtime()}")
             //chronometer 스탑워치. 기준으로부터 얼마나 지났는지 base에 저장
-            Log.d("seoyeon", "base: ${binding.chronometer.base}")
-            Log.d("seoyeon", "pauseTime: ${pauseTime}")
             binding.chronometer.base = SystemClock.elapsedRealtime() + pauseTime
 
             //버튼 표시 여부 조정
@@ -38,10 +35,6 @@ class MainActivity : AppCompatActivity() {
             binding.btnReset.isEnabled=true
         }
         binding.btnStop.setOnClickListener{
-            Log.d("seoyeon", "elapsedRealtime: ${SystemClock.elapsedRealtime()}")
-            Log.d("seoyeon", "base: ${binding.chronometer.base}")
-            Log.d("seoyeon", "pauseTime: ${pauseTime}")
-
             pauseTime = binding.chronometer.base - SystemClock.elapsedRealtime()
             binding.chronometer.stop()
             binding.btnStart.isEnabled=true

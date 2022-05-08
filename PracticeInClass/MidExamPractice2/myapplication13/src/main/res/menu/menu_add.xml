@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--    app 처음에 없을 수 있음!!! 추가 해주자-->
+
+    <!--액션바에 숨겨지지 않고 항상 보이게 showAsAction-->
+    <item
+        android:id="@+id/menu_add_save"
+        android:title="저장"
+        app:showAsAction="always"/>
+</menu>

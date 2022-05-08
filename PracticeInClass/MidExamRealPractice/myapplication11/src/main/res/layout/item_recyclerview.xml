@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--recyclerview 디자인-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_margin="10dp"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!--    layout_height는 꼭!!! wrap_content로 해야한다.-->
+    <!--    안그러면 하나의 목록이 하나의 화면에 가득참-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/star_big_on"/>
+    <TextView
+        android:id="@+id/item_tv"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textStyle="bold"/>
+    <!--    TextView가 남은 가로 여백을 모두 채우게 하기 위해-->
+    <!--    width="0dp", weight="1"로 설정함-->
+</LinearLayout>

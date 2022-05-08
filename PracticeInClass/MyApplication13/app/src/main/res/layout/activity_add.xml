@@ -21,17 +21,37 @@
         android:textSize="24dp"
         android:text="TODO 등록"/>
 
-    <EditText
-        android:id="@+id/addEditView"
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"/>
-    <Button
+        android:id="@+id/button5"
+        android:text="다시 호출 하기"/>
+
+     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button2"
         android:text="암시적 인텐트"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/button3"
+        android:text="소프트 키보드 보이기"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/button4"
+        android:text="소프트 키보드 숨기기"/>
+
+
+    <EditText
+        android:id="@+id/addEditView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"/>
 
 
 </LinearLayout>

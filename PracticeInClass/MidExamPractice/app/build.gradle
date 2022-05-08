@@ -36,8 +36,18 @@ android {
 }
 
 dependencies {
-    //뷰페이저2 선언
+    //제트팩 라이브러리 1) appcompat 라이브러리 선언
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    //제트팩 라이브러리 2) fragment 라이브러리 선언
+    implementation 'androidx.fragment:fragment-ktx:1.4.1'
+    //제트팩 라이브러리 3) recyclerview 라이브러리 선언
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    //제트팩 라이브러리 4) viewpager2 라이브러리 선언
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
+    //머터리얼(material) 라이브러리 선언
+    implementation 'com.google.android.material:material:1.5.0'
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'

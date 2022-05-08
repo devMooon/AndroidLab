@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer"
+    tools:context=".MainActivity">
+
+    <!--기존에 출력되는 화면-->
+    <!--앱바와 리사이클러 뷰를 연결하기 위해 CoordinatorLayout로 묶어줌-->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--머터리얼 라이브러리 1) AppBar > 컬랙싱 툴바 레이아웃 > 툴바, 이미지-->
+        <!--머터리얼 라이브러리 1) AppBar 레이아웃-->
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:id="@+id/appbar"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <!--            //                               1. 스크롤 연동하기-->
+            <!--            //                               2. 중첩 스크롤 뷰 사용하기-->
+            <!--            //                               3. 컬랩싱 툴바 레이아웃 (앱바 접히는 형태)-->
+            <!--            //                               4. 개별 뷰의 스크롤 설정(pin, parallax)-->
+            <!--컬랩싱 툴바 레이아웃으로 앱바 아래의 객체들을 묶어줌-->
+            <!--스크롤에 의해 완전히 접혔을 때 나타나는 색상(contentScrim), 내용 지정 가능-->
+
+            <!--스크롤이 일어났을 때 어떤 형태로 접힐 것인가(layout_scrollFlags)-->
+
+            <!--scroll|exitUntilCollapsed / 스크롤이 모두 사라지지 않고 툴바를 출력할 정도의 한 줄만 남을 때까지 스크롤 됨-->
+            <!--scroll|enterAlwaysCollapsed / 스크롤이 완전히 사라졌다가 거꾸로 스크롤 처음부터 나타나지 않고 메인 콘텐츠 부분이 스크롤된 다음에 나타난다.-->
+            <!--scroll|enterAlways / 스크롤 시 완전히 사라졌다가 거꾸로 스크롤 시 처음부터 다시 나타납니다.-->
+
+            <!--타이틀과 타이틀의 위치 설정 가능-->
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:contentScrim="?attr/colorPrimary"
+
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+
+                app:title="AppBar Title"
+                app:expandedTitleMarginBottom="50dp"
+                app:expandedTitleMarginStart="50dp">
+
+
+                <!--CollapsingToolbarLayout 안의 내용물 각각에게 스크롤 해서 접힐 때 어떻게 접힐건지 설정 가능-->
+                <!--layout_collapseMode:parallax - 앱바가 접힐 때 함께 따라서 접힌다.-->
+                <!--layout_collapseMode:pin - 앱바가 접히는 것과 관계없이 그대로 고정된 채로 보여준다.-->
+
+                <!--스크롤 했을 때 높이가 변할 수 있으니 조정! actionBarSize 접히는 정도에 따라 크기 조정됨-->
+                <!--제트팩 라이브러리 1) appcompat: - ToolBar-->
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:id="@+id/toolbar"
+                    app:layout_collapseMode="pin"
+                    style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
+
+                <!--이미지 뷰의 크기를 앱바의 크기와 동일하게 설정해서 여백이 없게 함-->
+                <!--center로 정렬하고 남는 부분은 잘라라-->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/stadium"
+                    app:layout_collapseMode="parallax"/>
+
+
+
+
+                <!--tablayout 배치-->
+                <!--tab 속성-->
+                <!--tabMode="scrollable" / 탭의 개수가 많아서 한줄에 표시할 수 없을 때 때 자동으로 스크롤 생성-->
+                <!--layout_collapseMode="parallax" /하단에 있는 뷰 페이져가 스크롤 될 때 함께 연동되겠다~-->
+                <!--뷰페이저에 있는 스크롤러와 연결되서 함께 움직임-->
+                <com.google.android.material.tabs.TabLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/tab1"
+                    android:layout_gravity="bottom"
+                    app:tabMode="scrollable"
+                    app:layout_collapseMode="parallax"
+                    app:tabTextColor="#ff00ff"/>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!--Fragement 자리 마련-->
+<!--        기본 화면 하나만 출력하려면 ViewPager2 대신에 LinearLayout, RelativeLayout... etc-->
+
+        <!--뷰페이저2에 layout_behavior속성을 추가해 스크롤 동작을 허용함!!-->
+        <!--제트팩 라이브러리 4) viewPager2 - 스크롤링 동작-->
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/viewpager"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+
+
+        <!--플로팅 액션 버튼: 화면에 떠 있는 듯한 버튼-->
+        <!--떠있을 어디 위에 있을 것인지: layout_anchor-->
+        <!--떠있을 때 위치: layout_anchorGravity-->
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fab"
+            android:layout_margin="10dp"
+            app:icon="@android:drawable/ic_input_add"
+            android:text="Extended FAB"
+            app:layout_anchor="@id/viewpager"
+            app:layout_anchorGravity="bottom|right"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!--숨겨진 화면-->
+    <!--네비게이션 레이아웃: 드로우어 레이아웃 화면에서 위쪽은 아이콘과 문자열 등을 배치했고 아래쪽은 메뉴 항목을 나열-->
+    <!--네비게이션 헤더와 메뉴 속성을 추가-->
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/main_drawer_view"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/navigation_header"
+        app:menu="@menu/navigation_menu"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>

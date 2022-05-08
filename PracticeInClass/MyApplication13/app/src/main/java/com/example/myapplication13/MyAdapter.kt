@@ -7,7 +7,7 @@ import com.example.myapplication13.databinding.ItemRecyclerviewBinding
 
 //리사이클러를 위해..
 //1. MyAdapter.kt 필요
-//2. MyViewHokder
+//2. MyViewHolder
 //3. decoration도 가능. 필수 X
 
 class MyViewHokder(val binding:ItemRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root)

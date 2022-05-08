@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--recyclerview 등록-->
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1" />
+<!--보통 height와 weight를 이렇게 설정해서 남아 있는 뷰 전체를 차지한다는 의미로 쓰임-->

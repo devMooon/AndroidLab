@@ -4,8 +4,10 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.renderscript.ScriptGroup
 import android.view.Menu
 import android.view.MenuItem
+import android.view.inputmethod.InputMethodManager
 import com.example.myapplication13.databinding.ActivityAddBinding
 import com.example.myapplication13.databinding.ActivityMainBinding
 
@@ -36,6 +38,11 @@ class AddActivity : AppCompatActivity() {
 //            finish()
 //        }
 
+        binding.button5.setOnClickListener{
+            //자신을 한번 더 호출
+            val intent = Intent(this, AddActivity::class.java)
+            startActivity(intent)
+        }
         binding.button2.setOnClickListener {
             val intent = Intent()
             //intent에서 어떤 클래스 파일을 부르는게 아니라 메니페스트에 지정해놓은 거 호출 할거야!
@@ -43,6 +50,20 @@ class AddActivity : AppCompatActivity() {
             intent.data = Uri.parse("http://www.google.com")
             startActivity(intent)
         }
+
+        //13-3 소프트 키보드 제어
+        val manager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        binding.button3.setOnClickListener{
+            //강제로 포커스 주기
+            binding.addEditView.requestFocus()
+            //포커스가 있는 곳에서 키보드를 띄우겠다.
+            manager.showSoftInput(binding.addEditView, InputMethodManager.SHOW_IMPLICIT)
+        }
+        binding.button4.setOnClickListener{
+            manager.hideSoftInputFromWindow(currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+
+        }
+
     }
 
     //button 대신에 옵션 버튼으로 구현
@@ -63,8 +84,16 @@ class AddActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         //선택된 아이디가 무엇인가
         if(item.itemId == R.id.menu_add_save){
+            //main으로 돌아가기 전에 데이터베이스에 값 저장
+                val inputData = binding.addEditView.text.toString()
+            //DB에 저장하기
+            val db = DBHelper(this).writableDatabase
+            db.execSQL("insert into todo_tb(todo) values (?)", arrayOf<String>(inputData))
+            db.close()
+
+
             //maniactivity로 result라는 이름으로 binding.addEditView.text에 해당하는 단어를 전달함
-            intent.putExtra("result", binding.addEditView.text.toString())
+            intent.putExtra("result", inputData)
             setResult(RESULT_OK, intent)
             //AddActivity를 종료한다.
             finish()

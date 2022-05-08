@@ -30,17 +30,19 @@ private const val ARG_PARAM2 = "param2"
 /**
  * A simple [Fragment] subclass.
  * Use the [Fragment1.newInstance] factory method to
- * create an instance of this fragment.
+ * create an instance of this fragment.Tab
  */
-//리사이클러 제어를 위한 코드
-//뷰 홀더, 어댑터, 레이아웃 메니저 선언 필요
+//제트팩라이브러리 3) recyclerview 제어를 위한 코드
+//필수! 뷰홀더, 어댑터, 레이아웃매니저
+//선택! 아이템 데코레이션
+//+ 항목을 구성하는 데이터에 새로운 데이터를 추가하거나 제거한 후 반드시 어댑터의 notifyDataSetChanged()함수 호출
+//datas.add("new data")
+//adapter.notifyDataSetChanged()
 
-//리사이클러 뷰의 뷰 홀더 만들기
-//item.recyclerview.xml에 있는 걸 받아오기
-//뷰 바인딩에 의해서 클래스로 변경됨 -> ItemRecyclerviewBinding
+//뷰 홀더 만들기
 class MyViewHolder(val binding : ItemRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root)
 
-//리사이클러 뷰의 어댑터 만들기
+//어댑터 만들기
 class MyAdapter(val datas:MutableList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     override fun getItemCount(): Int {
         //TODO("Not yet implemented")
@@ -52,9 +54,9 @@ class MyAdapter(val datas:MutableList<String>) : RecyclerView.Adapter<RecyclerVi
         return MyViewHolder(ItemRecyclerviewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
+    //데이터와 뷰 홀더를 연결
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        //TODO("Not yet implemented")
-        //데이터와 뷰 홀더를 연결시키는 작업
+        //TODO("Not yet implemented")\
 
         //뷰 홀더에 있는 바인딩 뷰 객체 가져오기
         val binding = (holder as MyViewHolder).binding
@@ -64,15 +66,13 @@ class MyAdapter(val datas:MutableList<String>) : RecyclerView.Adapter<RecyclerVi
 }
 
 
-//데코레이션을 위한 클래스
+//아이템 데코레이션
 class MyDecoration(val context: Context) : RecyclerView.ItemDecoration() {
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
 
-        //ondraw는 리사이클러 뷰 항목이 그려지기 전에 호출되는 함수
-        //따라서 배경색 먼저 칠하는 느낌
+        //ondraw는 리사이클러 뷰 항목이 그려지기 전에 호출되는 함수. 배경색 먼저 칠하는 느낌
         //c.drawBitmap(BitmapFactory.decodeResource(context.resources, R.drawable.stadium), 0f, 0f, null)
-
     }
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
@@ -90,7 +90,6 @@ class MyDecoration(val context: Context) : RecyclerView.ItemDecoration() {
         val top = height / 2 - d_height?.div(2) as Int
 
         c.drawBitmap(BitmapFactory.decodeResource(context.resources, R.drawable.kbo), left.toFloat(), top.toFloat(), null)
-
     }
 
     //항목 하나하나를 호출해 꾸며줌
@@ -108,6 +107,8 @@ class MyDecoration(val context: Context) : RecyclerView.ItemDecoration() {
 
     }
 }
+
+//제트팩 라이브러리 1) fragment
 class Fragment1 : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -135,11 +136,13 @@ class Fragment1 : Fragment() {
         }
         MyAdapter(datas)
 
-        //프래그먼트 화면 구성
-        //프래그먼트1.xml의 뷰 객체를 가져올 수 있는 viewBinding
+        //제트팩라이브러리 2) fragment 화면 구성
+        //프래그먼트 1.xml의 뷰 객체를 가져올 수 있는 viewBinding
         val binding = Fragment1Binding.inflate(inflater, container, false)
 
-        //화면에 보여주기 전에 레이아웃에 대한 설정 필요 -> 리니어 레이아웃을 사용하는 리사이클러 뷰를 만들겠다.
+
+        //제트팩라이브러리 3) recyclerview - 출력
+        //리니어 레이아웃을 사용하는 리사이클러 뷰
         val layoutManager = LinearLayoutManager(activity)
         //리니어 레이아웃 가로로 변경
         //layoutManager.orientation = LinearLayoutManager.HORIZONTAL
@@ -150,9 +153,9 @@ class Fragment1 : Fragment() {
         binding.recyclerView.adapter = MyAdapter(datas)
         //데코레이션을 리사이클러 뷰에 반영
         binding.recyclerView.addItemDecoration(MyDecoration(activity as Context))
-
         return binding.root
     }
+
         companion object {
             /**
              * Use this factory method to create a new instance of

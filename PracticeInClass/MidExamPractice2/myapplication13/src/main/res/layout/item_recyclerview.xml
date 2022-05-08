@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--리사이클러 뷰의 아이템 하나를 꾸미는 xml-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<!--꼭 height를 wrap_content로! 안그러면 항목 하나가 화면에 가득참-->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/todo"
+        android:padding="16dp"
+        android:layout_margin="8dp"/>
+
+<!--    할일 글씨, 남은 부분 다 차지하게 함-->
+    <TextView
+        android:id="@+id/item_todo"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="23dp"/>
+
+</LinearLayout>

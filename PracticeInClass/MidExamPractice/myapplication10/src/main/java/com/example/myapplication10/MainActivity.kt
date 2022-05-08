@@ -32,8 +32,9 @@ class MainActivity : AppCompatActivity() {
 //                Notification.CallStyle.forIncomingCall(caller, declineIntent, answerIntent)
 //            )
 //    }
-    //@TargetApi(Build.VERSION_CODES.S)
-    @RequiresApi(Build.VERSION_CODES.R)
+    //@TargetApi(Build.VERSION_CODES.S) //(31ver)
+
+    @RequiresApi(Build.VERSION_CODES.R)  //R 이하에서 나타나는 오류를 무시하겠다.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
@@ -105,7 +106,6 @@ class MainActivity : AppCompatActivity() {
             // true 24시간제, false 12시간제
         }
 
-
         //AlertDialog 버튼의 이벤트 핸들러 등록
         val eventHandler = object: DialogInterface.OnClickListener{
             override fun onClick(p0: DialogInterface?, p1: Int) {
@@ -119,6 +119,9 @@ class MainActivity : AppCompatActivity() {
                 //BUTTON_NEUTRAL
             }
         }
+
+
+
         binding.button4.setOnClickListener {
             //AlertDialog의 생성자는 pretected로 선언 되어서 객체를 직접 생성할 수 없고,
             //AlertDialog.Builder()를 이용해 생성
